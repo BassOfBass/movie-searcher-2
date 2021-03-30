@@ -42,7 +42,7 @@ export const fetchTMDBTLConfig = createAsyncThunk(
     return tlConfig;
   }
 );
-export const fetchTMDBCountryConfig = createAsyncThunk(
+export const fetchTMDBTimezoneConfig = createAsyncThunk(
   thunks.timezones,
   async () => {
     const tzConfig = await tmdbFetch("/3/configuration/timezones");

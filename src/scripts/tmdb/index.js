@@ -39,7 +39,7 @@ export async function tmdbFetch(
 
     const data = await response.json();
 
-    if (data.success && data.success === false) {
+    if (data?.success === false) {
       const { status_code, error_message, status_message } = data;
       
       return {
@@ -55,4 +55,7 @@ export async function tmdbFetch(
   
 }
 
+/**
+ * TODO: actually write it.
+ */
 async function tmdbThunkCallback() {}

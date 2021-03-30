@@ -1,16 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { statusList } from "src/scripts";
 import { reducerName } from "./";
-import { 
-  fetchTMDBAPIConfig,
-  fetchTMDBCountryConfig,
-  fetchTMDBJobConfig,
-  fetchTMDBLanguageConfig,
-  fetchTMDBTLConfig 
-} from "./thunks";
+import { extraReducers } from "./extraReducers";
 
 
-const initialState  = {
+/**
+ * @type {TMDBStore.Configuration}
+ */
+const initialState = {
   api: {
     config: {},
     status: statusList.idle,
@@ -50,23 +47,8 @@ const tmdbConfigSlice = createSlice({
   initialState,
   reducers: {
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchTMDBAPIConfig.pending, (state, action) => {
-        state.status = statusList.loading;
-      })
-      .addCase(fetchTMDBAPIConfig.fulfilled, (state, action) => {
-        state.config = action.payload;
-        state.status = statusList.succeeded;
-      })
-      .addCase(fetchTMDBAPIConfig.rejected, (state, action) => {
-        state.error = action.error.message;
-        state.status = statusList.failed;
-      })
-  }
+  extraReducers: extraReducers
 });
 
-
-
-export const { changeName } = tmdbConfigSlice.actions;
-export const configReducer = tmdbConfigSlice.reducer;
+export const {} = tmdbConfigSlice.actions;
+export const tmdbConfigReducer = tmdbConfigSlice.reducer;
