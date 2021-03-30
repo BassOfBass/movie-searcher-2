@@ -8,6 +8,13 @@ export const tmdbHeaders = new Headers([
   ["Content-Type", "application/json;charset=utf-8"],
 ]);
 
+export const tmdbQueries = {
+  /**
+   * https://developers.themoviedb.org/3/getting-started/append-to-response
+   */
+  appendToResponse: "append_to_response"
+}
+
 /**
  * @param {RequestInfo} endpoint 
  * @param {RequestInit} options 

@@ -1,4 +1,5 @@
 import { TMDBConfiguration } from "./pages/configuration";
+import { TMDBAccount } from "./pages/tmdb-account";
 import { TMDBList } from "./pages/tmdb-list";
 
 export function App() {
@@ -8,6 +9,7 @@ export function App() {
       <main className="main-content">
         <TMDBConfiguration />
         <TMDBList />
+        <TMDBAccount />
       </main>
       <footer className="global-footer">TMDB</footer>
     </>
