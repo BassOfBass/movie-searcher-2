@@ -9,8 +9,41 @@ export const tmdbHeaders = new Headers([
 ]);
 
 /**
- * 
- * @param {Request} endpoint 
- * @param {*} options 
+ * @param {RequestInfo} endpoint 
+ * @param {RequestInit} options 
  */
-export async function tmdbFetch(endpoint, options) {}
+export async function tmdbFetch(
+  endpoint, 
+  options = {
+    method: "GET",
+    headers: tmdbHeaders
+  }
+) {
+  const url = new URL(endpoint, tmdbBaseUrl).toString();
+
+  try {
+    const response = await fetch(url, { ...options });
+
+    if (!response.ok && response.status !== 304) {
+      return {
+        message: `Error ${response.status}: ${response.statusText}`
+      }
+    }
+
+    const data = await response.json();
+
+    if (data.success && data.success === false) {
+      const { status_code, error_message, status_message } = data;
+      
+      return {
+        message: `Error ${status_code} ${status_message}: ${error_message}`
+      }
+    }
+
+    return data;
+
+  } catch (error) {
+    console.error(error);
+  }
+  
+}

@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 import './index.css';
 import { App } from './app';
-import reportWebVitals from './reportWebVitals';
+// import reportWebVitals from './reportWebVitals';
 
 import { store } from "./store";
 import { fetchConfig } from './reducers/tmdb-config';

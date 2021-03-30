@@ -1,28 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { statusList } from "src/scripts";
-import { tmdbBaseUrl, tmdbHeaders } from "src/scripts/tmdb";
+import { tmdbFetch} from "src/scripts/tmdb";
 
 export const fetchConfig = createAsyncThunk(
   "configuration/fetchConfig",
   async () => {
-    const response = await fetch(
-      new URL("3/configuration", tmdbBaseUrl).toString(),
-      {
-        method: "GET",
-        headers: tmdbHeaders
-      }
-    );
+    const config = await tmdbFetch("3/configuration");
 
-    if (!response.ok) {
-      return {
-        message: `Error ${response.status}: ${response.statusText}`
-      }
-    }
-
-    const data = await response.json();
-    console.log(data);
-
-    return data;
+    return config;
   }
 )
 
