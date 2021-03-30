@@ -31,7 +31,7 @@ export async function tmdbFetch(
   try {
     const response = await fetch(url, { ...options });
 
-    if (!response.ok && response.status !== 304) {
+    if (!response.ok) {
       return {
         message: `Error ${response.status}: ${response.statusText}`
       }
@@ -54,3 +54,5 @@ export async function tmdbFetch(
   }
   
 }
+
+async function tmdbThunkCallback() {}

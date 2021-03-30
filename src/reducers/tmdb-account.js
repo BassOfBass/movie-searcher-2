@@ -9,7 +9,7 @@ import { tmdbFetch } from "src/scripts/tmdb";
 export const fetchTMDBAccount = createAsyncThunk(
   "tmdb-account/fetchAccount",
   async () => {
-    const list = await tmdbFetch(`/account`);
+    const list = await tmdbFetch(`3/account`);
 
     return list;
   }
@@ -22,7 +22,7 @@ const initialState = {
 };
 
 const tmdbAccountSlice = createSlice({
-  name: "tmdb-list",
+  name: "tmdb-account",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

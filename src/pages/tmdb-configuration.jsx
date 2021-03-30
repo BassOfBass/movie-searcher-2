@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StatusRender } from "src/components/status-render";
-import { fetchConfig } from "src/reducers/tmdb-config";
+import { fetchTMDBAPIConfig } from "src/reducers/tmdb/configuration/reducer";
 import { statusList } from "src/scripts/index";
 
 export function TMDBConfiguration() {
@@ -10,7 +10,7 @@ export function TMDBConfiguration() {
 
   useEffect(() => {
     if (status === statusList.idle) {
-      dispatch(fetchConfig());
+      dispatch(fetchTMDBAPIConfig());
     }
   }, [status, dispatch]);
 

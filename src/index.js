@@ -7,9 +7,7 @@ import { App } from './app';
 // import reportWebVitals from './reportWebVitals';
 
 import { store } from "./store";
-import { fetchConfig } from './reducers/tmdb-config';
-
-store.dispatch(fetchConfig());
+// import { fetchTMDBAPIConfig } from './reducers/tmdb-config';
 
 ReactDOM.render(
   <React.StrictMode>
