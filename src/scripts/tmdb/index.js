@@ -1,13 +1,10 @@
 export const tmdbBaseUrl = "https://api.themoviedb.org/"
-
 export const tmdbToken = process.env.REACT_APP_TMDB_API_TOKEN;
 export const tmdbApiKey = process.env.REACT_APP_TMDB_API_KEY;
-
 export const tmdbHeaders = new Headers([
   ["Authorization", `Bearer ${tmdbToken}`],
   ["Content-Type", "application/json;charset=utf-8"],
 ]);
-
 export const tmdbQueries = {
   /**
    * https://developers.themoviedb.org/3/getting-started/append-to-response
@@ -59,3 +56,12 @@ export async function tmdbFetch(
  * TODO: actually write it.
  */
 async function tmdbThunkCallback() {}
+
+
+export function createTMDBPagination(currentPage, totalPages, totalItems) {
+  return {
+    current: Number(currentPage),
+    total: Number(totalPages),
+    totalItems: Number(totalItems)
+  }
+}

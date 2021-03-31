@@ -18,29 +18,50 @@ namespace TMDBEndpoints {
     total_results: number
   }
 
-  export interface List {
-    poster_path?: string | null
-    id?: number
-    backdrop_path?: string | null
-    total_results?: number
-    public?: boolean
-    revenue?: string
-    page?: number
-    iso_639_1?: string
-    iso_3166_1?: string
-    total_pages?: number
-    description?: string
-    average_rating?: number
-    runtime?: number
-    name?: string
-    comments: { [id: string]: string | null } 
-    created_by?: {
-      gravatar_hash?: string
+  namespace List {
+    export interface List extends PagedEntry{
+      poster_path?: string | null
+      id?: number
+      backdrop_path?: string | null
+      public?: boolean
+      revenue?: string
+      iso_639_1?: string
+      iso_3166_1?: string
+      description?: string
+      average_rating?: number
+      runtime?: number
       name?: string
-      username?: string
+      comments: { [id: string]: string | null } 
+      created_by?: {
+        gravatar_hash?: string
+        name?: string
+        username?: string
+      }
+      results?: ListResult[]
     }
-    results?: object[]
+
+    export interface ListResult {
+      poster_path: string | null
+      adult: boolean
+      overview: string
+      release_date: string
+      original_title: string
+      genre_ids: number[]
+      id: number
+      media_type: "movie"
+      original_language: string
+      title: string
+      backdrop_path: string | null
+      popularity: number
+      vote_count: integer
+      video: boolean
+      vote_average: number
+    }
+
   }
+  
+
+  
 
   export interface Account {
     avatar?: {

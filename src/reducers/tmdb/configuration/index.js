@@ -1,5 +1,5 @@
 export const reducerName = "tmdb-configuration";
-export const thunks = {
+export const thunkTypes = {
   api: reducerName + "/fetchAPI",
   countries: reducerName + "/fetchCountries",
   jobs: reducerName + "/fetchJobs",

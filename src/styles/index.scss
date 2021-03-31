@@ -1,0 +1,80 @@
+@use "variables";
+@use "base";
+
+.project-root {
+  min-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.project-root > * {
+  flex: 0 1;
+  padding: 1em 2em;
+}
+
+.main-content {
+  flex: 1 1 auto;
+}
+
+.global-header {
+  width: 100%;
+
+  &__top {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+  }
+}
+
+.page-section {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 1em;
+  word-wrap: break-word;
+  margin: 1em;
+}
+
+.list-info {
+  display: block;
+  border: 0.25em solid var(--colour0-primary);
+  padding: 1em;
+}
+
+.list-result {
+  flex: 0 1 25em;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 0.5em;
+  border: 0.25em solid var(--colour0-primary);
+
+  & > * {
+    flex: 0 0;
+    padding: 0.5em 1em;
+  }
+  
+  &__header {
+    border-bottom: 0.125em solid var(--colour0-primary);
+  }
+  
+  &__body {
+    flex: 1 0 auto;
+  }
+  
+  &__footer {
+    border-top: 0.125em solid var(--colour0-primary);
+  }
+  
+  &_genres {
+    display: inline-flex;
+    list-style: none;
+    gap: 1em;
+    justify-content: start;
+    padding-left: 0;
+  }
+}
+
+

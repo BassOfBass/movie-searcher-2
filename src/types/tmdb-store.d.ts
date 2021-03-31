@@ -1,23 +1,20 @@
 namespace TMDBStore {
-  interface Statuse {
-    
+  export interface RootState {
+    tmdbConfig: Configuration
+    tmdbList: List,
+    tmdbAccount: {}
+  }
+  
+  export interface StateSelector {
+    (state: RootState): Section
   }
 
   interface Section {
     status: "idle" | "loading" | "succeeded" | "failed"
-    error: null | {}
+    error: null | string
   }
 
-  export interface Configuration extends Section {
-    api: ConfigItem
-    countries: ConfigItem
-    jobs: ConfigItem
-    languages: ConfigItem
-    primTranslations: ConfigItem
-    timeZones: ConfigItem
-  }
-
-  interface ConfigItem extends Section {
-    config: {}
+  export interface List extends Section {
+    list: TMDBEndpoints.List
   }
 }

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { statusList } from "src/scripts";
 import { reducerName } from "./";
 import { extraReducers } from "./extraReducers";
@@ -51,4 +51,6 @@ const tmdbConfigSlice = createSlice({
 });
 
 export const {} = tmdbConfigSlice.actions;
+
+export const selectWholeConfig = createSelector();
 export const tmdbConfigReducer = tmdbConfigSlice.reducer;

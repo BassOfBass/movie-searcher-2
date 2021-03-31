@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { tmdbFetch} from "src/scripts/tmdb";
-import { thunks } from "./";
+import { thunkTypes } from "./";
 
 export const fetchTMDBAPIConfig = createAsyncThunk(
-  thunks.api,
+  thunkTypes.api,
   async () => {
     const apiConfig = await tmdbFetch("/3/configuration");
 
@@ -11,7 +11,7 @@ export const fetchTMDBAPIConfig = createAsyncThunk(
   }
 )
 export const fetchTMDBCountryConfig = createAsyncThunk(
-  thunks.countries,
+  thunkTypes.countries,
   async () => {
     const countryConfig = await tmdbFetch("/3/configuration/countries");
 
@@ -19,7 +19,7 @@ export const fetchTMDBCountryConfig = createAsyncThunk(
   }
 );
 export const fetchTMDBJobConfig = createAsyncThunk(
-  thunks.jobs,
+  thunkTypes.jobs,
   async () => {
     const jobConfig = await tmdbFetch("/3/configuration/jobs");
 
@@ -27,7 +27,7 @@ export const fetchTMDBJobConfig = createAsyncThunk(
   }
 );
 export const fetchTMDBLanguageConfig = createAsyncThunk(
-  thunks.languages,
+  thunkTypes.languages,
   async () => {
     const languageConfig = await tmdbFetch("/3/configuration/languages");
 
@@ -35,7 +35,7 @@ export const fetchTMDBLanguageConfig = createAsyncThunk(
   }
 );
 export const fetchTMDBTLConfig = createAsyncThunk(
-  thunks.primTranslations,
+  thunkTypes.primTranslations,
   async () => {
     const tlConfig = await tmdbFetch("/3/configuration/primary_translations");
 
@@ -43,7 +43,7 @@ export const fetchTMDBTLConfig = createAsyncThunk(
   }
 );
 export const fetchTMDBTimezoneConfig = createAsyncThunk(
-  thunks.timezones,
+  thunkTypes.timezones,
   async () => {
     const tzConfig = await tmdbFetch("/3/configuration/timezones");
 

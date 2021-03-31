@@ -9,13 +9,20 @@ import { tmdbFetch } from "src/scripts/tmdb";
 export const fetchTMDBList = createAsyncThunk(
   "tmdb-list/fetchList",
   async ( id = 1 ) => {
+    /**
+     * @type {TMDBEndpoints.List}
+     */
     const list = await tmdbFetch(`4/list/${id}`);
 
     return list;
   }
 );
 
+/**
+ * @type {TMDBStore.List}
+ */
 const initialState = {
+  list: {},
   status: statusList.idle,
   error: null
 };

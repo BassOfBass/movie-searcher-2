@@ -1,17 +1,22 @@
-import { TMDBConfiguration } from "./pages/tmdb-configuration";
-import { TMDBAccount } from "./pages/tmdb-account";
-import { TMDBList } from "./pages/tmdb-list";
+import {
+  Switch,
+  Route,
+} from "react-router-dom";
+import { Layout } from "./layout";
+import { HomePage } from "./pages/home";
+import { TMDBIndex } from "./pages/tmdb";
 
 export function App() {
   return (
-    <>
-      <header className="global-header">Logo TBD</header>
-      <main className="main-content">
-        <TMDBConfiguration />
-        {/* <TMDBList />
-        <TMDBAccount /> */}
-      </main>
-      <footer className="global-footer">TMDB</footer>
-    </>
+    <Layout>
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route path="/tmdb">
+          <TMDBIndex />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
