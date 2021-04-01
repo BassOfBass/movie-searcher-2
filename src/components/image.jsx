@@ -5,15 +5,21 @@ import { constructSRCSet } from "scripts/tmdb"
  * @param {string} props.path 
  * @param {string} props.entry 
  * @param {string} props.alt 
+ * @param {string} props.className
  * @returns 
  */
-export function TMDBImage({path, entry, alt = path}) {
+export function TMDBImage({
+  path, 
+  entry, 
+  className= "",
+  alt = path,
+}) {
   const links = constructSRCSet(path, entry);
 
   return (
-    <figure>
-      <a href={links[0]}>
-        <picture>
+    <figure className={className}>
+      <a className="image-link" href={links[0]}>
+        <picture >
           <img 
             src={links[0]}
             srcSet={links[1]}

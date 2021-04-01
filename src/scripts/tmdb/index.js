@@ -204,7 +204,7 @@ export function constructSRCSet(
   for (let size of sizes) {
 
     if (size !== "original") {
-      const string = `${baseURL}${size}${path}`;
+      const string = `${baseURL}${size}${path} ${size}`;
       srcset.push(string);
     } else {
       src = `${baseURL}${size}${path}`;

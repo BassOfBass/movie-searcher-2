@@ -3,7 +3,7 @@ import { TMDBList } from "./list";
 
 import styles from "./index.module.scss";
 
-export function TMDBIndex() {
+function TMDBIndex() {
   let match = useRouteMatch();
 
 
