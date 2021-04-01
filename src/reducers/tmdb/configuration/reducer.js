@@ -1,4 +1,4 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { statusList } from "scripts";
 import { reducerName } from "./";
 import { extraReducers } from "./extraReducers";
@@ -13,28 +13,11 @@ const initialState = {
     status: statusList.idle,
     error: null
   },
-  countries: {
-    config: {},
-    status: statusList.idle,
-    error: null
-  },
-  jobs: {
-    config: {},
-    status: statusList.idle,
-    error: null
-  },
-  languages: {
-    config: {},
-    status: statusList.idle,
-    error: null
-  },
-  primTranslations: {
-    config: {},
-    status: statusList.idle,
-    error: null
-  },
-  timeZones: {
-    config: {},
+  genres: {
+    list: {
+      tv: [],
+      movie: []
+    },
     status: statusList.idle,
     error: null
   },
@@ -45,12 +28,10 @@ const initialState = {
 const tmdbConfigSlice = createSlice({
   name: reducerName,
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: extraReducers
 });
 
 export const {} = tmdbConfigSlice.actions;
 
-export const selectWholeConfig = createSelector();
 export const tmdbConfigReducer = tmdbConfigSlice.reducer;

@@ -120,8 +120,6 @@ a {
   }
 }
 
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -136,6 +134,10 @@ picture {
 
 svg {
   padding: 0.25em;
+}
+
+meter {
+  width: 100%;
 }
 
 button,

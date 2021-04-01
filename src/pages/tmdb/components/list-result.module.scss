@@ -19,7 +19,10 @@
   width: 100%;
   display: grid;
   grid-template-areas: 
-  "poster title";
+  "poster title"
+  "poster original"
+  "poster votes"
+  "poster popularity";
   gap: 1em;
   border-bottom: 0.125em solid var(--colour0-primary);
   padding: 0;
@@ -38,7 +41,6 @@
 .poster {
   grid-area: poster;
   width: 7em;
-  height: 5em;
 
   & img {
     width: 100%;
@@ -47,22 +49,28 @@
   }
 }
 
+.votes {
+  padding: 0.5em;
+  grid-area: votes;
+}
+
+.popularity {
+  padding: 0.5em;
+  grid-area: popularity;
+}
+
 .body {
   flex: 1 0 auto;
   padding: 0;
 }
 
+.overview {
+  padding: 0.5em;
+}
+
 .footer {
   width: 100%;
   border-top: 0.125em solid var(--colour0-primary);
-}
-  
-.genres {
-  display: inline-flex;
-  list-style: none;
-  gap: 1em;
-  justify-content: start;
-  padding-left: 0;
 }
 
 

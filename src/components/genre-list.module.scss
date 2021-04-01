@@ -1,0 +1,25 @@
+.container {
+  padding: 0.5em 0;
+}
+.genres {
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-items: center;
+  list-style: none;
+  gap: 0.5em;
+  padding-left: 0;
+}
+
+.genre {
+  color: var(--colour0-tertiary);
+  background-color: var(--colour0-quarternary);
+  padding: 0.25em;
+  border: 0.125em solid;
+  
+  &:hover,
+  &:focus {
+    color: var(--colour0-primary);
+    background-color: var(--colour0-secondary);
+  }
+}

@@ -17,4 +17,16 @@ namespace TMDBStore {
   export interface List extends Section {
     list: TMDBEndpoints.List.GetList
   }
+
+  export interface Configuration {
+    api: {
+      config: TMDBEndpoints.Configuration.API
+    }
+    genres: {
+      list: {
+        tv: [],
+        movie: []
+      }
+    }
+  }
 }

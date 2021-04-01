@@ -9,6 +9,9 @@ import { App } from './app';
 
 import { store } from "./store";
 import { ScrollToTop } from './components/scroll-to-top';
+import { fetchGenres } from 'reducers/tmdb/configuration/thunks';
+
+store.dispatch(fetchGenres());
 
 ReactDOM.render(
   <React.StrictMode>

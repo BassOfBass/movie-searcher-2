@@ -1,27 +1,52 @@
 
 /**
- * @callback StateSelector
- * @param {TMDBStore.RootState} state
+ * @param { string[] } list
+ * @param {string} mediaType
+ * @returns {(state: TMDBStore.RootState) => {
+ * id: string, name: string}[]} Selector
  */
+export function selectGenres(list, mediaType = "movie") {
+  return (state) => {
+    /**
+     * @type {TMDBEndpoints.Genres["genres"]}
+     */
+    let genreList;
+    // create temp array of ids
+    let tempList = [...list];
+    let genres = [];
 
-/**
- * @type {StateSelector}
- * @returns {TMDBStore.Configuration}
- */
-export function selectConfiguration(state) {
-  return state.tmdbConfig;
-}
+    // assign related genre list
+    if (mediaType === "movie") {
+      genreList = state.tmdbConfig.genres.list.movie;
+    } else {
+      genreList = state.tmdbConfig.genres.list.movie;
+    }
 
-/**
- * @type {TMDBStore.StateSelector}
- */
-export function selectAllConfigs(state) {
-  return Object.values(selectConfiguration(state)).map((section) => section.config);
-}
+    // iterate through genre list
+    for (let item of genreList) {
 
-/**
- * @type {TMDBStore.StateSelector}
- */
-export function selectAllConfigStatuses(state) {
+      // break out of iteration when there is no ids
+      if (tempList.length === 0) {
+        break;
+      }
+      
+      // iterate through temp list
+      for (let [index, id] of tempList.entries()) {
+        // if ids match
+        if (item.id === Number(id)) {
+          // add genre item to resulting genres
+          genres.push(item);
+          // remove said id out of temp and break iteration
+          tempList.splice(index, 1);
 
+          break;
+        }
+
+      }
+
+    }
+    
+
+    return genres;
+  }
 }

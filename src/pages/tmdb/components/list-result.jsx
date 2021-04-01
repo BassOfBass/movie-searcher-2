@@ -1,3 +1,4 @@
+import { GenreList } from "components/genre-list";
 import { TMDBImage } from "components/image";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
@@ -54,32 +55,33 @@ export function ListResult({ result }) {
             <span>({original_language})</span>
           </p>
         }
+        <div className={styles.votes}>
+          <p>Rating:</p>
+          <meter
+            max={10}
+            low={5}
+            high={8.5}
+            optimum={9}
+            value={vote_average}
+            title={`${vote_average} out of 10`}
+          >{vote_average} out of 10</meter>
+          <p>{vote_count} votes</p>
+        </div>
+        <p className={styles.popularity} >Popularity: {popularity}</p>
         
         {adult && 
           <p>Adults Only</p>
         }
       </header>
       <section className={styles.body}>
-        <TMDBImage path={backdrop_path} entry={"backdrop_path"}/>
-        {overview}
+        <TMDBImage 
+          path={backdrop_path} 
+          entry={"backdrop_path"}
+        />
+        <p className={styles.overview}>{overview}</p>
       </section>
       <footer className={styles.footer}>
-        <ul>
-          <li>Type: {media_type}</li>
-          <li>Popularity: {popularity}</li>
-          {/* <li>isVideo: {String(video)}</li> */}
-          <li>Vote count: {vote_count}</li>
-          <li>Vote average: {vote_average}</li>
-        </ul>
-        <div>
-          <span>Genres:</span>{" "}
-          <ul className={styles.genres} >
-            {genre_ids.map(id => (
-              // TODO: make them links
-              <li>{id}</li>
-            ))}
-          </ul>
-        </div>
+        <GenreList list={genre_ids} type={media_type} />
         <p>
           Release: <time dateTime={release_date}>{formattedRelease}</time>
         </p>

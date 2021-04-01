@@ -1,11 +1,7 @@
 import { statusList } from "scripts";
 import {
   fetchTMDBAPIConfig,
-  fetchTMDBCountryConfig,
-  fetchTMDBJobConfig,
-  fetchTMDBLanguageConfig,
-  fetchTMDBTLConfig,
-  fetchTMDBTimezoneConfig
+  fetchGenres
 } from "./thunks";
 
 /**
@@ -24,59 +20,16 @@ export function extraReducers(builder) {
         state.api.error = action.error.message;
         state.api.status = statusList.failed;
       })
-      // .addCase(fetchTMDBCountryConfig.pending, (state, action) => {
-      //   state.countries.status = statusList.loading;
-      // })
-      // .addCase(fetchTMDBCountryConfig.filfilled, (state, action) => {
-      //   state.countries.config = action.payload;
-      //   state.countries.status = statusList.succeeded;
-      // })
-      // .addCase(fetchTMDBCountryConfig.rejected, (state, action) => {
-      //   state.countries.error = action.error.message;
-      //   state.countries.status = statusList.failed;
-      // })
-      // .addCase(fetchTMDBJobConfig.pending, (state, action) => {
-      //   state.jobs.status = statusList.loading;
-      // })
-      // .addCase(fetchTMDBJobConfig.filfilled, (state, action) => {
-      //   state.jobs.config = action.payload;
-      //   state.jobs.status = statusList.succeeded;
-      // })
-      // .addCase(fetchTMDBJobConfig.rejected, (state, action) => {
-      //   state.jobs.error = action.error.message;
-      //   state.jobs.status = statusList.failed;
-      // })
-      // .addCase(fetchTMDBLanguageConfig.pending, (state, action) => {
-      //   state.languages.status = statusList.loading;
-      // })
-      // .addCase(fetchTMDBLanguageConfig.filfilled, (state, action) => {
-      //   state.languages.config = action.payload;
-      //   state.languages.status = statusList.succeeded;
-      // })
-      // .addCase(fetchTMDBLanguageConfig.rejected, (state, action) => {
-      //   state.languages.error = action.error.message;
-      //   state.languages.status = statusList.failed;
-      // })
-      // .addCase(fetchTMDBTLConfig.pending, (state, action) => {
-      //   state.primTranslations.status = statusList.loading;
-      // })
-      // .addCase(fetchTMDBTLConfig.filfilled, (state, action) => {
-      //   state.primTranslations.config = action.payload;
-      //   state.primTranslations.status = statusList.succeeded;
-      // })
-      // .addCase(fetchTMDBTLConfig.rejected, (state, action) => {
-      //   state.primTranslations.error = action.error.message;
-      //   state.primTranslations.status = statusList.failed;
-      // })
-      // .addCase(fetchTMDBTimezoneConfig.pending, (state, action) => {
-      //   state.timezones.status = statusList.loading;
-      // })
-      // .addCase(fetchTMDBTimezoneConfig.filfilled, (state, action) => {
-      //   state.timezones.config = action.payload;
-      //   state.timezones.status = statusList.succeeded;
-      // })
-      // .addCase(fetchTMDBTimezoneConfig.rejected, (state, action) => {
-      //   state.timezones.error = action.error.message;
-      //   state.timezones.status = statusList.failed;
-      // })
+      .addCase(fetchGenres.pending, (state, action) => {
+        state.genres.status = statusList.loading;
+      })
+      .addCase(fetchGenres.fulfilled, (state, action) => {
+        state.genres.list.tv = action.payload.tv;
+        state.genres.list.movie = action.payload.movie;
+      })
+      .addCase(fetchGenres.rejected, (state, action) => {
+        state.genres.status = statusList.failed;
+        state.genres.error = action.error.message;
+      })
+      
 }
