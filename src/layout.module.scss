@@ -1,0 +1,43 @@
+.header {
+  width: 100%;
+}
+
+.top {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.icon {
+  flex: 0 1 3em;
+}
+
+.logo {
+  fill: var(--colour0-primary);
+}
+
+.search {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  width: auto;
+}
+
+.navbar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-items: center;
+  gap: 2em;
+}
+
+.navitem {
+  padding: 0.5em;
+  font-size: 1.5em;
+}

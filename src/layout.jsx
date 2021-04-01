@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SiteLogo } from "./assets";
 
+import styles from "./layout.module.scss";
 export function Layout({ children }) {
   
   /**
@@ -17,29 +18,36 @@ export function Layout({ children }) {
 
   return (
     <>
-      <header className="global-header">
-        <nav className="global-header__top">
-          <div role="banner">
-            <Link to="/">
-              <SiteLogo />
+      <header className={styles.header}>
+        <nav className={styles.top}>
+          <div role="banner" className={styles.icon}>
+            <Link to="/" className="image-link">
+              <SiteLogo className={styles.logo}/>
             </Link>
           </div>
           <form 
             role="search"
             aria-label="Sitewide"
+            className={styles.search}
             onSubmit={handleSiteSearch}
           >
             <label htmlFor="site-search">Search:</label>
             <input type="search" name="site-search" id="site-search"/>
-            <button type="submit">Go!</button>
+            <button 
+              className={styles.button}
+              type="submit"
+            >
+              Go!
+            </button>
           </form>
+          <div></div>
         </nav>
         <nav role="navigation" aria-label="site">
-          <ul>
-            <li>
+          <ul className={styles.navbar}>
+            <li className={styles.navitem}>
               <Link to="/lists">Lists</Link>
             </li>
-            <li>
+            <li className={styles.navitem}>
             <Link to="/movies">Movies</Link>
             </li>
           </ul>

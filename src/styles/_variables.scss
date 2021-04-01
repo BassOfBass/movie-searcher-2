@@ -1,3 +1,18 @@
+// sass variables
+$width-feature: 240px;
+$width-mobile: 360px;
+$width-tablet: 720px;
+$width-laptop: 1280px;
+
+// length values
+$length-nano: 0.0625em;
+$length-thin: 0.125em;
+$length-short: 0.25em;
+$length-small: 0.5em;
+$length-normal: 1em;
+$length-wide: 1.5em;
+
+// CSS variables
 :root {
   --colour0-primary : hsl(0, 0%, 85%);
   --colour0-secondary : hsl(0, 0%, 15%);
@@ -5,4 +20,35 @@
   --anchour-colour-primary: hsl(195, 100%, 70%);
   --anchour-colour-secondary: hsl(240, 100%, 50%);
   --anchour-colour-tertiary: hsl(210, 75%, 55%);
+
+  --length-nano: #{$length-nano};
+  --length-thin: #{$length-thin};
+  --length-short: #{$length-short};
+  --length-small: #{$length-small};
+  --length-normal: #{$length-normal};
+  --length-wide: #{$length-wide};
+
+  --width-feature: #{$width-feature};
+  --width-mobile: #{$width-mobile};
+  --width-tablet: #{$width-tablet};
+  --width-laptop: #{$width-laptop};
+
+  // durations for transition and transform properties
+  --duration-none: 0;
+  --duration-fast: 0.25s;
+  --duration-norm: 0.5s;
+  --duration-slow: 1s;
+  --duration-global: var(--duration-fast);
+
+  --outline-default-width: 3px;
+  --outline-default-colour: var(--colour0-primary);
+  --outline-default-style: dashed;
+  --outline-default: 
+    var(--outline-default-width) 
+    var(--outline-default-colour) 
+    var(--outline-default-style);
+
+  @media (prefers-reduced-motion) {
+    --duration-global: var(--duration-none);
+  }
 }

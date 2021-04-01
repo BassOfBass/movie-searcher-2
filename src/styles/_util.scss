@@ -1,3 +1,11 @@
 .image-link {
   border: none;
+  
+  &:hover {
+    border: none;
+  }
+
+  &:active {
+    border: none;
+  }
 }
