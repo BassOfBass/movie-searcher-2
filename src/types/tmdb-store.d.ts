@@ -15,6 +15,6 @@ namespace TMDBStore {
   }
 
   export interface List extends Section {
-    list: TMDBEndpoints.List
+    list: TMDBEndpoints.List.GetList
   }
 }

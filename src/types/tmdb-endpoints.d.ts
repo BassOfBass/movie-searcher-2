@@ -19,7 +19,7 @@ namespace TMDBEndpoints {
   }
 
   namespace List {
-    export interface List extends PagedEntry{
+    export interface GetList extends PagedEntry{
       poster_path?: string | null
       id?: number
       backdrop_path?: string | null

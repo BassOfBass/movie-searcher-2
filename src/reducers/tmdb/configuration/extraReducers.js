@@ -1,4 +1,4 @@
-import { statusList } from "src/scripts";
+import { statusList } from "scripts";
 import {
   fetchTMDBAPIConfig,
   fetchTMDBCountryConfig,

@@ -2,21 +2,16 @@ import { format } from "date-fns";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { StatusRender } from "src/components/status-render";
-import { fetchTMDBList } from "src/reducers/tmdb/list/tmdb-list";
-import { statusList } from "src/scripts";
-import { createTMDBPagination } from "src/scripts/tmdb";
-
+import { Link } from "react-router-dom";
+import { StatusRender } from "components/status-render";
+import { fetchTMDBList } from "reducers/tmdb/list/tmdb-list";
+import { statusList } from "scripts";
+import { createTMDBPagination } from "scripts/tmdb";
+import { TMDBImage } from "components/image";
 export function TMDBList() {
-  let pageID;
   const params = useParams();
   const dispatch = useDispatch();
-
-  if (!Number(params.id)) {
-    pageID = 1
-  } else {
-    pageID = params.id
-  }
+  const pageID = Number(params.id) || 1;
 
   /**
    * @type {TMDBStore.List}
@@ -32,7 +27,9 @@ export function TMDBList() {
     <>
       <h1>Movie list</h1>
       <StatusRender status={status} error={error} >
-        <ListInfo list={list} />
+        {list && 
+          <ListInfo list={list} />
+        }
         <section className="page-section">
           {list.results && list.results.map((result) => (
             <ListResult key={result.id} result={result} />
@@ -45,7 +42,7 @@ export function TMDBList() {
 
 /**
  * @param {object} props
- * @param {TMDBStore.List["list"]} props.list
+ * @param {TMDBStore.List} props.list
  */
 function ListInfo({ list }) {
   const {
@@ -103,11 +100,9 @@ function ListInfo({ list }) {
         <div>
           <p>Comments:</p>
           <ul>
-            {comments && Object.entries(comments).map(([id, comment]) => {
-              !comment
-                ? null
-                : <li id={id}>{comment}</li>
-            })}
+            {comments && Object.entries(comments).map(([id, comment]) => (
+              comment && <li id={id}>{comment}</li>
+            ))}
           </ul>
         </div>
       </footer>
@@ -117,7 +112,7 @@ function ListInfo({ list }) {
 
 /**
  * @param {object} props 
- * @param {TMDBEndpoints.ListResult} props.result
+ * @param {TMDBEndpoints.List.ListResult} props.result
  */
 function ListResult({ result }) {
   const {
@@ -150,7 +145,10 @@ function ListResult({ result }) {
       >
         {/* TODO: add link */}
         <h3>
-          <a href={id}>{title}</a> <span>({new Date(release_date).getFullYear()})</span>
+          <Link to={`movies/${id}`}>
+            {title}
+          </Link>{" "}
+          <span>({new Date(release_date).getFullYear()})</span>
         </h3>
         {title === original_title &&
           <p>
@@ -158,19 +156,11 @@ function ListResult({ result }) {
             <span>{original_language}</span>
           </p>
         }
-        <figure>
-          <picture>
-            <img src={poster_path} alt={poster_path}/>
-          </picture>
-        </figure>
+        <TMDBImage path={poster_path} entry={"poster_path"}/>
         { adult && <p>Adults Only</p> }
       </header>
       <section className="list-result__body">
-        <figure>
-          <picture>
-            <img src={backdrop_path} alt={backdrop_path}/>
-          </picture>
-        </figure>
+        <TMDBImage path={backdrop_path} entry={"backdrop_path"}/>
         {overview}
       </section>
       <footer className="list-result__footer">

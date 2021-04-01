@@ -1,6 +1,7 @@
 import {
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 import { Layout } from "./layout";
 import { HomePage } from "./pages/home";
@@ -13,9 +14,10 @@ export function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path="/tmdb">
+        <Route exact path="/tmdb">
           <TMDBIndex />
         </Route>
+        <Redirect exact to="/"/>
       </Switch>
     </Layout>
   );

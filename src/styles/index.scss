@@ -1,5 +1,7 @@
 @use "variables";
 @use "base";
+@use "attributes";
+@use "util";
 
 .project-root {
   min-height: 100%;

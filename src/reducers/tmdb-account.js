@@ -3,8 +3,8 @@ import {
   createAsyncThunk, 
   // createEntityAdapter 
 } from "@reduxjs/toolkit";
-import { statusList } from "src/scripts";
-import { tmdbFetch } from "src/scripts/tmdb";
+import { statusList } from "scripts";
+import { tmdbFetch } from "scripts/tmdb";
 
 export const fetchTMDBAccount = createAsyncThunk(
   "tmdb-account/fetchAccount",

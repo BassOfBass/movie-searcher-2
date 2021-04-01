@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { tmdbFetch} from "src/scripts/tmdb";
+import { tmdbFetch} from "scripts/tmdb";
 import { thunkTypes } from "./";
 
 export const fetchTMDBAPIConfig = createAsyncThunk(

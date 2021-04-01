@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { statusList } from "src/scripts";
+import { statusList } from "scripts";
 import { reducerName } from "./";
 import { extraReducers } from "./extraReducers";
 

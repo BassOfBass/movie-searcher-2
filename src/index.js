@@ -8,11 +8,13 @@ import { App } from './app';
 // import reportWebVitals from './reportWebVitals';
 
 import { store } from "./store";
+import { ScrollToTop } from './components/scroll-to-top';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
+        <ScrollToTop />
         <App />
       </Provider>
     </BrowserRouter>
