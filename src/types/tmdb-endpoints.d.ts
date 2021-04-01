@@ -7,6 +7,9 @@ namespace TMDBEndpoints {
     id: number
   }
 
+  /**
+   * TODO: write an errorlist interface
+   */
   export interface Error extends Request {
     status_code: number
     status_message: string

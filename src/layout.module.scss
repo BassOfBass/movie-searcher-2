@@ -18,7 +18,7 @@
   fill: var(--colour0-primary);
 }
 
-.search {
+.searchbar {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -32,12 +32,16 @@
 .navbar {
   display: flex;
   flex-flow: row wrap;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
-  gap: 2em;
+  gap: 0.5em 2em;
 }
 
 .navitem {
-  padding: 0.5em;
+  padding: 0.25em;
   font-size: 1.5em;
+}
+
+.footer {
+  
 }

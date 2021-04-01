@@ -8,6 +8,7 @@ import { fetchTMDBList } from "reducers/tmdb/list/tmdb-list";
 import { statusList } from "scripts";
 import { createTMDBPagination } from "scripts/tmdb";
 import { TMDBImage } from "components/image";
+
 export function TMDBList() {
   const params = useParams();
   const dispatch = useDispatch();
