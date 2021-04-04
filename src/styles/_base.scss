@@ -45,7 +45,7 @@ body {
 main > section {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: start;
   align-items: stretch;
   gap: 1em;
   word-wrap: break-word;
@@ -53,10 +53,17 @@ main > section {
 }
 
 h1 {
+  width: 100%;
   font-size: 2.2rem;
   text-transform: capitalize;
-  width: 100%;
   text-align: center;
+  word-wrap: break-word;
+}
+
+h2 {
+  width: 100%;
+  font-size: 2rem;
+  text-align: start;
   word-wrap: break-word;
 }
 
@@ -69,6 +76,10 @@ li,
 dt,
 dd {
   line-height: 1.5;
+}
+
+p {
+  word-break: break-all;
 }
 
 ul, 

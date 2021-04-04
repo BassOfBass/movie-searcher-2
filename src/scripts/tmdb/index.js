@@ -109,7 +109,6 @@ const defaultReqOpts = {
   method: "GET",
   headers: tmdbHeaders,
 }
-const defaultQuerryParams = new URLSearchParams();
 
 /**
  * TODO: write header merging logic
@@ -120,9 +119,16 @@ const defaultQuerryParams = new URLSearchParams();
 export async function tmdbFetch(
   endpoint,
   reqOptions = defaultReqOpts,
-  queryParams = defaultQuerryParams
+  queryParams = null
 ) {
-  const reqURL = endpoint + "?" + queryParams.toString();
+  let reqURL;
+
+  if (!queryParams) {
+    reqURL = endpoint;
+  } else {
+    reqURL = endpoint + "?" + queryParams.toString();
+  }
+
   const url = new URL(reqURL, tmdbBaseUrl).toString();
 
   try {
@@ -137,7 +143,11 @@ export async function tmdbFetch(
 
     const data = await response.json();
 
-    if (data?.success === false) {
+    // if it is a request error
+    if (data.status_code && data.status_code > 1) {
+      /**
+       * @type {TMDBEndpoints.Error}
+       */
       const { status_code, error_message, status_message } = data;
       
       throw new Error(`Request error ${status_code} ${status_message}: ${error_message}`);

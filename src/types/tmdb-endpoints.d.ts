@@ -20,7 +20,7 @@ namespace TMDBEndpoints {
   /**
    * TODO: write an errorlist interface
    */
-  export interface Error extends Request {
+  interface Error extends Request {
     status_code: number
     status_message: string
   }
@@ -72,11 +72,16 @@ namespace TMDBEndpoints {
     }
 
   }
-  
 
+  namespace Auth {
+    interface RequestToken {
+      status_message: string
+      request_token: string
+      success: boolean
+      status_code: integer
+    }
   
-
-  export interface Account {
+  interface Account {
     avatar?: {
       gravatar: {
         hash: string
@@ -92,7 +97,7 @@ namespace TMDBEndpoints {
   
   }
 
-  export interface MovieCertifications {
+  interface MovieCertifications {
     US: TMDBEndpointCertificationsEntry[]
     CA: TMDBEndpointCertificationsEntry[]
     DE: TMDBEndpointCertificationsEntry[]
@@ -104,7 +109,7 @@ namespace TMDBEndpoints {
     IN: TMDBEndpointCertificationsEntry[]
   }
   
-  export interface TVCertifications {
+  interface TVCertifications {
     US: TMDBEndpointCertificationsEntry[]
     CA: TMDBEndpointCertificationsEntry[]
     AU: TMDBEndpointCertificationsEntry[]
@@ -117,22 +122,19 @@ namespace TMDBEndpoints {
     BR: TMDBEndpointCertificationsEntry[]
   }
   
-  export interface CertificationsEntry {
+  interface CertificationsEntry {
     certification: string
     meaning: string
   
     order: number
   }
   
-  export interface GuestSession extends Request {
+  interface GuestSession extends Request {
     guest_session_id: string
     expires_at: string
   }
 
-  export interface RequestToken extends Request {
-    expires_at: string
-    request_token: string
-  }
+  
 
   namespace ChangeList {
 
@@ -284,7 +286,7 @@ namespace TMDBEndpoints {
     }
   }
 
-  export interface Genres {
+  interface Genres {
     genres: Genre[];
   }
 

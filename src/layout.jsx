@@ -12,7 +12,7 @@ export function Layout({ children }) {
     { id: "UNBwlLvV_nob8_0lejN-J", name: "Genres", path: "/genres" },
     { id: "snxdELbokLnKDlqOVYGVl", name: "People", path: "/people" },
     { id: "k14wnsd87RCdmh36uGT0x", name: "Reviews", path: "/reviews" },
-
+    { id: "jnS0icM9bcOcdu7cVC1Xa", name: "Auth", path: "/auth" },
   ];
   /**
    * @param {import("react").FormEvent<HTMLFormElement} event 

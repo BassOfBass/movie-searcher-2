@@ -5,19 +5,25 @@ import {
 import { Layout } from "./layout";
 import { HomePage } from "pages/home";
 import { TMDBList } from "pages/tmdb/list";
+import { MovieDetails } from "pages/tmdb/movies/details";
+import { TMDBAuth } from "pages/tmdb/auth";
 
 export function App() {
   return (
     <Layout>
       <Switch>
-        <Route exact to="/lists">
-          <TMDBList />
-        </Route>
-        <Route exact to="/" >
+        <Route exact path="/" >
           <HomePage />
         </Route>
-        
-
+        <Route exact path="/auth" >
+          <TMDBAuth />
+        </Route>
+        <Route exact path="/lists">
+          <TMDBList />
+        </Route>
+        <Route>
+          <MovieDetails exact path="/movies/:movieID/details"/>
+        </Route>
       </Switch>
       
     </Layout>

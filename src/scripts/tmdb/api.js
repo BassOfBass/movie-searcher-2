@@ -26,12 +26,49 @@ const tmdbAPIqueries = {
    * - `vote_average.asc`
    * - `vote_average.desc`
    */
-  sortBy: "sort_by"
+  sortBy: "sort_by",
 };
 
 export const tmdbAPI = {
+  auth: {
+    /**
+     * This method generates a new request token that you can ask a user to approve. 
+     * This is the first step in getting permission from a user to read and write data on their behalf. 
+     * [You can read more about this system here](https://developers.themoviedb.org/4/auth/user-authorization-1).
+     * 
+     * Note that there is an optional body you can post alongside this request 
+     * to set a redirect URL or callback that will be executed
+     * once a request token has been approved on TMDb.
+     */
+    async createRequestToken({ redirectURL } = {}) {
+      /**
+       * @type {string}
+       */
+      let redirURL;
+
+      if (redirectURL && String(redirectURL) && redirectURL.length !== 0) {
+        redirURL = new URL(redirectURL).toString();
+      }
+
+      /**
+       * @type {TMDBEndpoints.Auth.RequestToken}
+       */
+      const token = await tmdbFetch(
+        "4/auth/request_token",
+        {
+          method: "POST",
+          body: redirURL && JSON.stringify({
+            "redirect_to": redirURL
+          })
+        }
+      );
+
+      return token;
+    }
+  },
   list: {
     /**
+     * TODO: fix sorting query
      * This method will retrieve a list by id.
      * Private lists can only be accessed by their owners 
      * and therefore require a valid user access token.
@@ -43,7 +80,7 @@ export const tmdbAPI = {
       listID = "",
       query = new URLSearchParams([
         [ tmdbAPIqueries.language, "en-US" ]
-        // [ tmdbAPIqueries.sortBy, "" ]
+        // [ tmdbAPIqueries.sortBy, "original_order.asc" ]
       ])
     }) {
       /**
