@@ -103,25 +103,36 @@ export const tmdbQueries = {
 }
 
 /**
+ * @type {RequestInit}
+ */
+const defaultReqOpts = {
+  method: "GET",
+  headers: tmdbHeaders,
+}
+const defaultQuerryParams = new URLSearchParams();
+
+/**
+ * TODO: write header merging logic
  * @param {RequestInfo} endpoint 
- * @param {RequestInit} options 
+ * @param {RequestInit} reqOptions 
+ * @param {URLSearchParams} queryParams
  */
 export async function tmdbFetch(
   endpoint,
-  options = {
-    method: "GET",
-    headers: tmdbHeaders
-  }
+  reqOptions = defaultReqOpts,
+  queryParams = defaultQuerryParams
 ) {
-  const url = new URL(endpoint, tmdbBaseUrl).toString();
+  const reqURL = endpoint + "?" + queryParams.toString();
+  const url = new URL(reqURL, tmdbBaseUrl).toString();
 
   try {
-    const response = await fetch(url, { ...options });
+    const response = await fetch(url, { 
+      ...defaultReqOpts,
+      ...reqOptions 
+    });
 
     if (!response.ok) {
-      return {
-        message: `Error ${response.status}: ${response.statusText}`
-      }
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -130,7 +141,7 @@ export async function tmdbFetch(
       const { status_code, error_message, status_message } = data;
 
       return {
-        message: `Error ${status_code} ${status_message}: ${error_message}`
+        message: `Request error ${status_code} ${status_message}: ${error_message}`
       }
     }
 

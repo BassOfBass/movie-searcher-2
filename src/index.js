@@ -1,26 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from "react-redux";
+// import { BrowserRouter } from 'react-router-dom';
+// import { Provider } from "react-redux";
 
 import './styles/index.scss';
 import { App } from './app';
 // import reportWebVitals from './reportWebVitals';
 
-import { store } from "./store";
-import { ScrollToTop } from './components/scroll-to-top';
-import { fetchGenres } from 'reducers/tmdb/configuration/thunks';
+// import { store } from "./store";
+// import { ScrollToTop } from './components/scroll-to-top';
+// import { fetchGenres } from 'reducers/tmdb/configuration/thunks';
 
-store.dispatch(fetchGenres());
+// store.dispatch(fetchGenres());
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <ScrollToTop />
+    {/* <BrowserRouter> */}
+      {/* <Provider store={store}> */}
+        {/* <ScrollToTop /> */}
         <App />
-      </Provider>
-    </BrowserRouter>
+      {/* </Provider> */}
+    {/* </BrowserRouter> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

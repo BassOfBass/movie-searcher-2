@@ -7,6 +7,16 @@ namespace TMDBEndpoints {
     id: number
   }
 
+  interface Genre extends Entry {
+    name: string
+  }
+
+  interface ProductionCompany extends Entry {
+    name: string
+    logo_path: string | null
+    origin_country: string
+  }
+
   /**
    * TODO: write an errorlist interface
    */
@@ -275,13 +285,51 @@ namespace TMDBEndpoints {
   }
 
   export interface Genres {
-    genres: {
-      id: number,
-      name: string
-    }[];
+    genres: Genre[];
   }
 
-
+  namespace Movies {
+    export interface Details extends Entry {
+      adult: boolean
+      backdrop_path: string | null
+      belongs_to_collection: object | null
+      budget: number
+      genres: Genre[]
+      homepage: string | null
+      /**
+       * - minLength: 9
+       * - maxLength: 9
+       * - pattern: `^tt[0-9]{7}`
+       */
+      imdb_id: string |null
+      original_language: string
+      original_title: string
+      overview: string | null
+      popularity: number
+      poster_path: string | null
+      production_companies: ProductionCompany[]
+      production_countries: {
+        iso_3166_1: string
+        name: string
+      }[]
+      /**
+       * format: `date`
+       */
+      release_date: string
+      revenue: number
+      runtime: number | null
+      spoken_languages: {
+        iso_639_1: string
+        name: string
+      }[]
+      status: "Rumored" | "Planned" | "In Production" | "Post | Production" | "Released" | "Canceled"
+      tagline: string | null
+      title: string
+      video: boolean
+      vote_average: number
+      vote_count: number
+    }
+  }
 }
 
 

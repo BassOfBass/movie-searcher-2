@@ -1,20 +1,14 @@
-import {
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+// import {
+//   Switch,
+//   Route,
+// } from "react-router-dom";
 import { Layout } from "./layout";
-import { TMDBIndex } from "./pages/tmdb";
-import { TMDBList } from "pages/tmdb/list";
+import { HomePage } from "pages/home";
 
 export function App() {
   return (
     <Layout>
-      <Switch>
-        <Route to="/">
-          <TMDBList />
-        </Route>
-      </Switch>
+      <HomePage />
     </Layout>
   );
 }
