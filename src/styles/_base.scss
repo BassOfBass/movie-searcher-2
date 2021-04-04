@@ -98,6 +98,7 @@ ul {
 
 li {
   text-align: inherit;
+  word-break: break-all;
 }
 
 li > ul > li,
@@ -134,6 +135,8 @@ a {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  background-color: var(--colour0-quarternary);
+  padding: 0 2px;
 }
 
 img,

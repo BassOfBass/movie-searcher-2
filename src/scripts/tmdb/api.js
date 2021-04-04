@@ -39,6 +39,8 @@ export const tmdbAPI = {
      * Note that there is an optional body you can post alongside this request 
      * to set a redirect URL or callback that will be executed
      * once a request token has been approved on TMDb.
+     * @param {object} params
+     * @param {string} params.redirectURL
      */
     async createRequestToken({ redirectURL } = {}) {
       /**
@@ -64,6 +66,29 @@ export const tmdbAPI = {
       );
 
       return token;
+    },
+    /**
+     * This method will finish the user authentication flow 
+     * and issue an official user access token. 
+     * The request token in this request is sent along as part of the POST body. 
+     * You should still use your standard API read access token for authenticating this request.
+     * 
+     * https://developers.themoviedb.org/4/auth/create-access-token
+     * @param {string} requestToken
+     */
+    async createAccessToken(requestToken) {
+      /**
+       * @type {TMDBEndpoints.Auth.AccessToken}
+       */
+      const response = await tmdbFetch(
+        "/4/auth/access_token",
+        { 
+          method: "POST",
+          body: JSON.stringify({ "request_token": requestToken })
+        }
+      );
+
+      return response;
     }
   },
   list: {

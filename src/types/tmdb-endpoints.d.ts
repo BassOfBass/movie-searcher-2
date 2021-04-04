@@ -80,7 +80,15 @@ namespace TMDBEndpoints {
       success: boolean
       status_code: integer
     }
-  
+
+    interface AccessToken {
+      status_message: string
+      access_token: string
+      success: boolean
+      status_code: number
+      account_id: string
+    }
+  }
   interface Account {
     avatar?: {
       gravatar: {

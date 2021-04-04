@@ -1,3 +1,11 @@
 namespace TMDBStore {
-  export interface RootState {}
+  interface RootState {
+    configuration: ConfigurationSlice
+  }
+
+  interface ConfigurationSlice {
+    requestToken: string
+    accessToken: string
+    accountID: string
+  }
 }
