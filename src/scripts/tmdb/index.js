@@ -139,16 +139,14 @@ export async function tmdbFetch(
 
     if (data?.success === false) {
       const { status_code, error_message, status_message } = data;
-
-      return {
-        message: `Request error ${status_code} ${status_message}: ${error_message}`
-      }
+      
+      throw new Error(`Request error ${status_code} ${status_message}: ${error_message}`);
     }
 
     return data;
 
   } catch (error) {
-    console.error(error);
+    return error
   }
 
 }

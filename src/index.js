@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 // import { Provider } from "react-redux";
 
 import './styles/index.scss';
@@ -15,12 +15,12 @@ import { App } from './app';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <BrowserRouter> */}
+    <BrowserRouter>
       {/* <Provider store={store}> */}
         {/* <ScrollToTop /> */}
         <App />
       {/* </Provider> */}
-    {/* </BrowserRouter> */}
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
