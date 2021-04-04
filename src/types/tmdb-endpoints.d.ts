@@ -22,7 +22,7 @@ namespace TMDBEndpoints {
    */
   interface Error extends Request {
     status_code: number
-    status_message: string
+    status_message?: string
   }
 
   interface PagedEntry {
@@ -87,6 +87,12 @@ namespace TMDBEndpoints {
       success: boolean
       status_code: number
       account_id: string
+    }
+
+    interface Logout {
+      status_message: string
+      success: boolean
+      status_code: number
     }
   }
   interface Account {

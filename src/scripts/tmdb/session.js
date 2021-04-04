@@ -53,3 +53,10 @@ export function retrieveAccountID() {
 export function setAccountID(accountID) {
   localStorage.setItem(session.id, accountID)
 }
+
+export function logoutAccount() {
+  localStorage.removeItem(session.request);
+  localStorage.removeItem(session.isApproved);
+  localStorage.removeItem(session.access);
+  localStorage.removeItem(session.id);
+}

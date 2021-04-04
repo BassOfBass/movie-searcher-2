@@ -4,8 +4,10 @@ namespace TMDBStore {
   }
 
   interface ConfigurationSlice {
-    requestToken: string
-    accessToken: string
-    accountID: string
+    auth: {
+      requestToken: string
+      accessToken: string
+      accountID: string
+    }
   }
 }

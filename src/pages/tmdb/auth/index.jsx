@@ -8,7 +8,8 @@ import {
   retrieveAccountID,
   setAccountID,
   retrieveApproval,
-  approveRequest
+  approveRequest,
+  logoutAccount
 } from "scripts/tmdb/session";
 
 import styles from "./index.module.scss";
@@ -25,6 +26,12 @@ export function TMDBAuth() {
     (null)
   );
   let [accError, setAccError] = useState(
+    /**
+     * @type {TMDBEndpoints.Error}
+     */
+    (null)
+  );
+  let [logoutError, setLogoutError] = useState(
     /**
      * @type {TMDBEndpoints.Error}
      */
@@ -88,7 +95,39 @@ export function TMDBAuth() {
     setAccountID(response.account_id);
     changeAccToken(token => token = response.access_token);
     changeAccID(id => id = response.account_id);
-    switchIsApproved(approval => approval = true)
+    switchIsApproved(approval => approval = true);
+    button.disabled = false;
+  }
+
+  /**
+   * TODO: figure out why it ends in `status 37` error
+   * @param {import("react").FormEvent<HTMLFormElement} event
+   */
+  async function handleLogOut(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    /**
+     * @type {HTMLButtonElement}
+     */
+    const button = form.querySelector('button[type="submit"]');
+
+    button.disabled = true;
+    const response = await tmdbAPI.auth.logout(accToken);
+
+    // log out didn't pass through
+    if (response.status_code !== 13) {
+      setLogoutError(error => error = response.message);
+      button.disabled = false;
+      return;
+    }
+
+    logoutAccount();
+    changeReqToken(token => token = null);
+    changeAccToken(token => token = null);
+    changeAccID(id => id = null);
+    switchIsApproved(approval => approval = false);
+    button.disabled = false;
   }
 
   return (
@@ -123,7 +162,8 @@ export function TMDBAuth() {
                         id="request-token" 
                         rows="8"
                         readOnly
-                      >{accToken}</textarea>
+                        value={reqToken}
+                      ></textarea>
                       {accError &&
                         <output>{JSON.stringify(accError)}</output>
                       }
@@ -153,7 +193,14 @@ export function TMDBAuth() {
                   </div>}
             </>
         }
-
+        {accID &&
+          <form onSubmit={handleLogOut}>
+            <div>
+              <button type="submit">Log out</button>
+            </div>
+            <output>{logoutError}</output>
+          </form>
+        }
       </section>
     </>
   )

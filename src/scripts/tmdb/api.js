@@ -89,6 +89,22 @@ export const tmdbAPI = {
       );
 
       return response;
+    },
+    /**
+     * This method gives your users the ability to log out of a session.
+     * @param {string} accessToken 
+     */
+    async logout(accessToken) {
+      /**
+       * @type {TMDBEndpoints.Auth.Logout}
+       */
+      const response = await tmdbFetch("/4/auth/access_token",
+      {
+        method: "DELETE",
+        body: JSON.stringify({ "access_token": accessToken })
+      });
+
+      return response;
     }
   },
   list: {
@@ -105,7 +121,7 @@ export const tmdbAPI = {
       listID = "",
       query = new URLSearchParams([
         [ tmdbAPIqueries.language, "en-US" ]
-        // [ tmdbAPIqueries.sortBy, "original_order.asc" ]
+        // [ tmdbAPIqueries.sortBy, "original_order\.asc" ]
       ])
     }) {
       /**
