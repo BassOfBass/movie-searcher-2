@@ -7,6 +7,7 @@ import { HomePage } from "pages/home";
 import { TMDBList } from "pages/tmdb/list";
 import { MovieDetails } from "pages/tmdb/movies/details";
 import { TMDBAuth } from "pages/tmdb/auth";
+import { CreateList } from "pages/tmdb/list/create-list";
 
 export function App() {
   return (
@@ -20,6 +21,9 @@ export function App() {
         </Route>
         <Route exact path="/lists">
           <TMDBList />
+        </Route>
+        <Route exact path="/lists/create">
+          <CreateList />
         </Route>
         <Route>
           <MovieDetails exact path="/movies/:movieID/details"/>

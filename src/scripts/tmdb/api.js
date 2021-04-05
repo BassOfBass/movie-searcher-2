@@ -134,6 +134,22 @@ export const tmdbAPI = {
       );
 
       return list;
+    },
+    /**
+     * This method will create a new list.
+     * You will need to have valid user access token in order to create a new list.
+     * @param {TMDBEndpoints.List.CreateListBody} body 
+     */
+    async createList(body) {
+      /**
+       * @type {TMDBEndpoints.List.CreateList}
+       */
+      const response = await tmdbFetch("/4/list", {
+        method: "POST",
+        body: JSON.stringify(body)
+      })
+
+      return response;
     }
   },
   movies: {

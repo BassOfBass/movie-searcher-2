@@ -3,7 +3,7 @@ import { tmdbAPI } from "scripts/tmdb/api";
 import { 
   retrieveRequestToken, 
   setRequestToken,
-  retriveAccessToken,
+  retrieveAccessToken,
   setAccessToken,
   retrieveAccountID,
   setAccountID,
@@ -15,10 +15,10 @@ import {
 import styles from "./index.module.scss";
 
 export function TMDBAuth() {
-  let [reqToken, changeReqToken] = useState(retrieveRequestToken());
-  let [accToken, changeAccToken] = useState(retriveAccessToken());
-  let [accID, changeAccID] = useState(retrieveAccountID());
-  let [isApproved, switchIsApproved] = useState(retrieveApproval());
+  const [reqToken, changeReqToken] = useState(retrieveRequestToken());
+  const [accToken, changeAccToken] = useState(retrieveAccessToken());
+  const [accID, changeAccID] = useState(retrieveAccountID());
+  const [isApproved, switchIsApproved] = useState(retrieveApproval());
   let [reqError, setReqError] = useState(
     /**
      * @type {TMDBEndpoints.Error}
@@ -58,13 +58,13 @@ export function TMDBAuth() {
 
     // response is an error
     if (!response.request_token) {
-      setReqError(error => error = response);
+      setReqError(response.message);
       button.disabled = false;
       return;
     }
 
     setRequestToken(response.request_token);
-    changeReqToken(reqToken => reqToken = response.request_token);
+    changeReqToken(response.request_token);
     button.disabled = false;
   }
 
@@ -85,7 +85,7 @@ export function TMDBAuth() {
 
     if (!response.access_token) {
       // response is an error
-      setAccError(error => error = response);
+      setAccError(response.message);
       button.disabled = false;
       return;
     }
@@ -93,9 +93,9 @@ export function TMDBAuth() {
     approveRequest();
     setAccessToken(response.access_token);
     setAccountID(response.account_id);
-    changeAccToken(token => token = response.access_token);
-    changeAccID(id => id = response.account_id);
-    switchIsApproved(approval => approval = true);
+    changeAccToken(response.access_token);
+    changeAccID(response.account_id);
+    switchIsApproved(true);
     button.disabled = false;
   }
 
@@ -105,6 +105,12 @@ export function TMDBAuth() {
    */
   async function handleLogOut(event) {
     event.preventDefault();
+    console.log(
+      reqToken === retrieveRequestToken(), 
+      accToken === retrieveAccessToken(), 
+      accID === retrieveAccountID(),
+      isApproved === retrieveApproval()
+    );
 
     const form = event.target;
     /**
@@ -123,10 +129,10 @@ export function TMDBAuth() {
     }
 
     logoutAccount();
-    changeReqToken(token => token = null);
-    changeAccToken(token => token = null);
-    changeAccID(id => id = null);
-    switchIsApproved(approval => approval = false);
+    changeReqToken(null);
+    changeAccToken(null);
+    changeAccID(null);
+    switchIsApproved(false);
     button.disabled = false;
   }
 

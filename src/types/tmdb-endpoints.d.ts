@@ -8,7 +8,7 @@ namespace TMDBEndpoints {
   }
 
   interface Genre extends Entry {
-    name: string
+    name?: string
   }
 
   interface ProductionCompany extends Entry {
@@ -32,7 +32,7 @@ namespace TMDBEndpoints {
   }
 
   namespace List {
-    export interface GetList extends PagedEntry{
+    interface GetList extends PagedEntry{
       poster_path?: string | null
       id?: number
       backdrop_path?: string | null
@@ -53,7 +53,7 @@ namespace TMDBEndpoints {
       results?: ListResult[]
     }
 
-    export interface ListResult {
+    interface ListResult {
       poster_path: string | null
       adult: boolean
       overview: string
@@ -71,6 +71,38 @@ namespace TMDBEndpoints {
       vote_average: number
     }
 
+    interface CreateList {
+      status_message: string
+      id: number
+      success: boolean
+      status_code: number
+    }
+
+    interface CreateListBody {
+      /**
+       * `Required`
+       * Set the name of your list.
+       */
+      name: string
+      /**
+       * `Required`
+       * Set the ISO-639-1 variant for your list.
+       */
+      iso_639_1: string
+      /**
+       * Set the description of your list.
+       */
+      description?:string
+      /**
+       * Toggle the public status of your list.
+       */
+      public?:boolean
+      /**
+       * Set the ISO-3166-1 variant for your list.
+       */
+      iso_3166_1?: string
+      access_token: Auth.AccessToken["access_token"]
+    }
   }
 
   namespace Auth {
@@ -78,7 +110,7 @@ namespace TMDBEndpoints {
       status_message: string
       request_token: string
       success: boolean
-      status_code: integer
+      status_code: number
     }
 
     interface AccessToken {

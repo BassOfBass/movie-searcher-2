@@ -28,7 +28,7 @@ export function approveRequest() {
   localStorage.setItem(session.isApproved, String(true))
 };
 
-export function retriveAccessToken() {
+export function retrieveAccessToken() {
   const accToken = localStorage.getItem(session.access);
 
   return accToken;
