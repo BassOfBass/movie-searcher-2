@@ -221,9 +221,11 @@ export function constructSRCSet(
 
   // iterate over sizes array
   for (let size of sizes) {
+     
 
     if (size !== "original") {
-      const string = `${baseURL}${size}${path} ${size}`;
+      const widthDesc = size.slice(1) + "w";
+      const string = `${baseURL}${size}${path} ${widthDesc}`;
       srcset.push(string);
     } else {
       src = `${baseURL}${size}${path}`;

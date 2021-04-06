@@ -8,6 +8,7 @@ import { TMDBList } from "pages/tmdb/list";
 import { MovieDetails } from "pages/tmdb/movies/details";
 import { TMDBAuth } from "pages/tmdb/auth";
 import { CreateList } from "pages/tmdb/list/create-list";
+import { MovieCredits } from "pages/tmdb/movies/credits";
 
 export function App() {
   return (
@@ -27,6 +28,9 @@ export function App() {
         </Route>
         <Route>
           <MovieDetails exact path="/movies/:movieID/details"/>
+        </Route>
+        <Route>
+          <MovieCredits exact path="/movies/:movieID/credits"/>
         </Route>
       </Switch>
       
