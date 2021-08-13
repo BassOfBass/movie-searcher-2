@@ -212,8 +212,8 @@ export function constructSRCSet(
   let src;
   /**
    * @example
-   * `${baseURL}${sizes[n]}${path} ${sizes[n]}, 
-   * ${baseURL}${sizes[m]}${path} ${sizes[m]},
+   * `${baseURL}${sizes[n]}${path} ${sizes[n]}w, 
+   * ${baseURL}${sizes[m]}${path} ${sizes[m]}w,
    * ${baseURL}${sizes[d]}${path}`
    * @type {string[])
    */
@@ -222,11 +222,14 @@ export function constructSRCSet(
   // iterate over sizes array
   for (let size of sizes) {
      
-
     if (size !== "original") {
+      // remove `w` from start and put it at the end
+      // as required by `srcset` attribute
       const widthDesc = size.slice(1) + "w";
       const string = `${baseURL}${size}${path} ${widthDesc}`;
+
       srcset.push(string);
+
     } else {
       src = `${baseURL}${size}${path}`;
     }

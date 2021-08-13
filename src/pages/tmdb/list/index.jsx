@@ -1,8 +1,13 @@
 import { ErrorDisplay, LoadingDisplay } from "components";
+import { TMDBImage } from "components/tmdb-image";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { statusList } from "scripts";
 import { tmdbAPI } from "scripts/tmdb/api";
+
+import styles from "./index.module.scss";
+import { ListItems } from "./list-item";
 
 export function TMDBList() {
   let [status, changeStatus] = useState(statusList.idle);
@@ -12,7 +17,7 @@ export function TMDBList() {
      * @type {TMDBEndpoints.List.GetList}
      */
     ({})
-    );
+  );
 
   useEffect(() => {
     (async() => {
@@ -31,7 +36,7 @@ export function TMDBList() {
     })();
   }, [status, error, list]);
 
-  if (status === statusList.loading) {
+  if (status === statusList.loading || status === statusList.idle) {
     return <LoadingDisplay />
   }
 
@@ -40,12 +45,49 @@ export function TMDBList() {
   }
 
   const {
-    name
+    name,
+    comments,
+    page,
+    total_pages,
+    total_results,
+    average_rating,
+    backdrop_path,
+    created_by,
+    description,
+    id,
+    poster_path,
+    public: isPublic,
+    revenue,
+    runtime,
+    iso_3166_1,
+    iso_639_1,
+    results
   } = list;
 
   return (
     <>
-      <h1>{name}</h1>
+      <h1 id={id}>{name}</h1>
+      <section className={styles.info}>
+        <TMDBImage className={styles.poster} path={poster_path} entry={"poster_path"}/>
+        <TMDBImage className={styles.backdrop} path={backdrop_path} entry={"backdrop_path"}/>
+        <p className={styles.author}>
+          Created by:{" "}
+          <Link to={`/users/${created_by.username}`}>{created_by.name}</Link>
+        </p>
+        <p className={styles.description}>
+          {description}
+        </p>
+        <p className={styles.rating}>Rating: {average_rating.toFixed(1)} out of 10</p>
+        <footer className={styles.footer}>
+          {!isPublic && (
+            <p>Private</p>
+          )}
+          <p>Page: {page} out of {total_pages}</p>
+          <p>Total results: {total_results}</p>
+        </footer>
+      </section>
+      <ListItems result={results}/>
     </>
   )
 }
+

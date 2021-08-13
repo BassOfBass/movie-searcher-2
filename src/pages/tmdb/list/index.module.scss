@@ -1,0 +1,34 @@
+.info {
+  display: grid;
+  grid-template-areas: 
+  "poster backdrop"
+  "poster author"
+  "poster description"
+  "poster rating"
+  "footer footer";
+}
+
+.poster {
+  grid-area: poster;
+}
+
+.backdrop {
+  grid-area: backdrop;
+}
+
+.author {
+  grid-area: author;
+}
+
+.description {
+  grid-area: description;
+}
+
+.rating {
+  grid-area: rating;
+}
+
+.footer {
+  grid-area: footer;
+  text-align: center;
+}
